@@ -3,12 +3,11 @@
 
   <table class="table table-hover table-striped">
     <thead>
-      <tr>
         <th>Producto</th>
         <th>Precio</th>
         <th>Cantidad</th>
         <th>Total</th>
-      </tr>
+        <th>Eliminar</th>
     </thead>
     <tbody>
       @for (item of listItems; track $index){
@@ -17,10 +16,21 @@
             <td>{{ item.product.price | currency }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.quantity * item.product.price | currency }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="onRemoveFromCart(item.product.id)">
+                <i class="bi-trash"> Eliminar</i>
+              </button>
+            </td>
           </tr>
 
       }
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="text-end"><strong>Total:</strong></td>
+        <td colspan="1" class="text-start"><strong>{{ total | currency }}</strong></td>
+      </tr>
+    </tfoot>
 
     </table>
 

@@ -4,6 +4,7 @@ import { CartComponent } from '../cart/cart';
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/products';
 import { CartItem } from '../../models/cartItem';
+import { NgClass } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
 
 @Component({
   selector: 'app-cart-app',
@@ -13,8 +14,10 @@ import { CartItem } from '../../models/cartItem';
 export class CartAppComponent {
 
   listProducts: Product[] = [];
-
   listItems: CartItem[] = [];
+  total: number = 0;
+  showCart: boolean = false;
+
 
   constructor(private productService: ProductService) {
 
@@ -22,6 +25,8 @@ export class CartAppComponent {
 
   ngOnInit() {
     this.listProducts = this.productService.findAll();
+    this.listItems = JSON.parse(sessionStorage.getItem('cartItems') || '[]');
+    this.calculateTotal();
   }
 
   onAddToCart(product: Product) {
@@ -36,6 +41,30 @@ export class CartAppComponent {
       return;
     }
     this.listItems = [...this.listItems, { product: {...product}, quantity: 1 }];
+    this.saveItemsSessionStorage();
+    this.calculateTotal();
+  }
+
+  onRemoveFromCart(idProduct: number) {
+    this.listItems = this.listItems.filter(item => {
+      return item.product.id !== idProduct;
+    });
+
+    this.saveItemsSessionStorage();
+    this.calculateTotal();
+  }
+
+  calculateTotal() {
+    this.total = this.listItems.reduce((total, item) => total + (item.quantity * item.product.price), 0);
+
+  }
+
+  saveItemsSessionStorage() {
+    sessionStorage.setItem('cartItems', JSON.stringify(this.listItems));
+  }
+
+  openCart() {
+    this.showCart = !this.showCart;
   }
 
 }

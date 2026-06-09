@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CartItem } from '../../models/cartItem';
 import { CurrencyPipe } from '@angular/common';
 
@@ -10,5 +10,15 @@ import { CurrencyPipe } from '@angular/common';
 export class CartComponent {
 
   @Input({required: true}) listItems: CartItem[] = []; 
+
+  @Output() idPrductEmiter = new EventEmitter<number>();
+
+  @Input({required: true}) total: number = 0;
+
+  onRemoveFromCart(idProduct: number) {
+    this.idPrductEmiter.emit(idProduct);
+  }
+
+
 
 }
