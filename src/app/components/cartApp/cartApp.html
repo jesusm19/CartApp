@@ -1,0 +1,10 @@
+<h2>CartApp</h2>
+
+      <app-catalogo [listProducts]="listProducts" (productEventEmitter)="onAddToCart($event)"></app-catalogo>
+
+      @if (listItems.length > 0){
+            <app-cart [listItems]="listItems"></app-cart>
+
+      } @else {
+            <div class="alert alert-warning">El carrito de compras está vacío.</div>
+      }

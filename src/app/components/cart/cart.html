@@ -1,0 +1,27 @@
+<div class="mb-4">
+  <h2>Carro de compras</h2>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of listItems; track $index){
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price | currency }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.quantity * item.product.price | currency }}</td>
+          </tr>
+
+      }
+    </tbody>
+
+    </table>
+
+</div>
