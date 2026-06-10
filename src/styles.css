@@ -8,7 +8,6 @@
     height: 100%;
     z-index: 1000;
 }
- 
 .animacion {
     animation-duration: 2s;
     animation-fill-mode: both;

@@ -4,12 +4,12 @@ import { CartComponent } from '../cart/cart';
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/products';
 import { CartItem } from '../../models/cartItem';
-import { NgClass } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
 import { NavbarComponent } from "../shared/navbar/navbar";
+import { ModalCartComponent } from '../cart/modal-cart/modal-cart';
 
 @Component({
   selector: 'app-cart-app',
-  imports: [CatalogoComponent, CartComponent, NavbarComponent],
+  imports: [CatalogoComponent, NavbarComponent, ModalCartComponent],
   templateUrl: './cartApp.html',
 })
 export class CartAppComponent {

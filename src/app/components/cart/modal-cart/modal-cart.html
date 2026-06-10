@@ -1,0 +1,22 @@
+<div class="abrir-modal animacion fadeIn">
+    <div class="modal" tabindex="-1" style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" (click)="openCart()"></button>
+                </div>
+                <div class="modal-body">
+                    @if (listItems.length > 0){
+                    <app-cart [listItems]="listItems" [total]="total" (idPrductEmiter)="onRemoveFromCart($event)">
+                    </app-cart>
+
+                    } @else {
+                    <div class="alert alert-warning">El carrito de compras está vacío.</div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
