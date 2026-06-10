@@ -5,10 +5,11 @@ import { ProductService } from '../../services/product';
 import { Product } from '../../models/products';
 import { CartItem } from '../../models/cartItem';
 import { NgClass } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
+import { NavbarComponent } from "../shared/navbar/navbar";
 
 @Component({
   selector: 'app-cart-app',
-  imports: [CatalogoComponent, CartComponent],
+  imports: [CatalogoComponent, CartComponent, NavbarComponent],
   templateUrl: './cartApp.html',
 })
 export class CartAppComponent {

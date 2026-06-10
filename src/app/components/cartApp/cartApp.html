@@ -1,35 +1,33 @@
-<h2>Catálogo de Productos</h2>
-<button class="btn btn-info mb-3 btn-sm" (click)="openCart()">
-      @if (showCart) {
-            <span>Cerrar Carrito ({{ listItems.length }})</span>
-      } @else {
-            <span>Abrir Carrito ({{ listItems.length }})</span>
-      }
-</button>
+<app-navbar [listItems]="listItems" (isOpenCartEventEmitter)="openCart()"></app-navbar>
 
-<div class="row">
-      <div [className]="showCart ? 'col-9' : 'col'">
-            <app-catalogo [listProducts]="listProducts" (productEventEmitter)="onAddToCart($event)"></app-catalogo>
-
-      </div>
-
-      @if (showCart) {
-            <div class="col-3">
-                  @if (listItems.length > 0){
-                        <app-cart 
-                              [listItems]="listItems" 
-                              [total]="total" 
-                              (idPrductEmiter)="onRemoveFromCart($event)">
-                        </app-cart>
-                        
-                  } @else {
-                        <div class="alert alert-warning">El carrito de compras está vacío.</div>
-                  }
-                  <button class="btn btn-secondary float-end" (click)="openCart()">Cerrar Carrito</button>
-                  
+<div class="container my-4">
+      
+      <h2>Catálogo de Productos</h2>
+      
+      <div class="row">
+            <div [className]="showCart ? 'col-9' : 'col'">
+                  <app-catalogo [listProducts]="listProducts" (productEventEmitter)="onAddToCart($event)"></app-catalogo>
+      
             </div>
-
-      }
+      
+            @if (showCart) {
+                  <div class="col-3">
+                        @if (listItems.length > 0){
+                              <app-cart 
+                                    [listItems]="listItems" 
+                                    [total]="total" 
+                                    (idPrductEmiter)="onRemoveFromCart($event)">
+                              </app-cart>
+                              
+                        } @else {
+                              <div class="alert alert-warning">El carrito de compras está vacío.</div>
+                        }
+                        <button class="btn btn-secondary float-end" (click)="openCart()">Cerrar Carrito</button>
+                        
+                  </div>
+      
+            }
+      </div>
 </div>
 
 
