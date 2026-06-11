@@ -1,20 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CartItem } from '../../../models/cartItem';
+import { RouterModule } from '@angular/router';
+import { Product } from '../../../models/products';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './navbar.html',
 })
 export class NavbarComponent {
 
   @Input({required: true}) listItems!: CartItem[];
 
-  @Output() isOpenCartEventEmitter = new EventEmitter();
-
-  openCart() {
-    this.isOpenCartEventEmitter.emit();
-  }
-
+  @Input({required: true}) total: number = 0;
 
 }

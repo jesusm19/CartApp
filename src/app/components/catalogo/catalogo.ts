@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/products';
 import { ProductCardComponent } from '../product-card/product-card';
+import { SharingDataService } from '../../services/sharing-data';
+import { ProductService } from '../../services/product';
 
 @Component({
   selector: 'app-catalogo',
@@ -9,12 +11,22 @@ import { ProductCardComponent } from '../product-card/product-card';
 })
 export class CatalogoComponent {
 
-  @Input({required: true}) listProducts!: Product[];
+  listProducts!: Product[];
 
-  @Output() productEventEmitter = new EventEmitter<Product>();
+  constructor(
+    private SharingDataService: SharingDataService,
+    private ProductService: ProductService
+  ) {
+    
+  }
+
+  ngOnInit() {
+    this.listProducts = this.ProductService.findAll();
+    
+  }
 
   onAddToCart(product: Product) {
-    this.productEventEmitter.emit(product);
+    this.SharingDataService.productEmitter.emit(product);
   }
 
 }
