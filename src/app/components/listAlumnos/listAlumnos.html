@@ -1,0 +1,16 @@
+
+<div class="row my-8">
+
+    <div class="col">
+
+        <app-alumnos
+            [listAlumnos]="listAlumnos()" 
+            (abrirModalEventEmmitter)="abrirModal()"
+            ></app-alumnos>
+
+    </div>
+</div>
+
+@if (isOpen) {
+    <app-modal-materias (cerrarModalEventEmmitter)="cerrarModal()"></app-modal-materias>
+}

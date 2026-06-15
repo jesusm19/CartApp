@@ -1,0 +1,22 @@
+<table class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido Paterno</th>
+            <th scope="col">Apellido Materno</th>
+            <th scope="col">Ver</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (alumno of listAlumnos; track $index) {
+            <tr>
+                <td>{{alumno.nombre}}</td>
+                <td>{{alumno.apellidoPaterno}}</td>
+                <td>{{alumno.apellidoMaterno}}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="abrirMaterias()">Ver materias</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
